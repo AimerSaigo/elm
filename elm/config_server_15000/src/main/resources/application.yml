@@ -1,0 +1,34 @@
+server:
+  port: 15000
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/miletsaigo/elm-scc
+          default-label: master
+          search-paths: '*'
+          username: 18157957505
+          password: 22d4x2918x
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:13000/eureka
+  instance:
+    prefer-ip-address: true #使用ip地址向Eureka注册
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #设置eureka控制台中显示的注册信息
+    lease-renewal-interval-in-seconds: 5 #续约间隔时间
+    lease-expiration-duration-in-seconds: 15 #续约到期时间

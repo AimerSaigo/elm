@@ -1,0 +1,22 @@
+server:
+  port: 10300
+spring:
+  application:
+    name: business-server
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    generate-ddl: false
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8088
+feign:
+  sentinel:
+    enabled: true
